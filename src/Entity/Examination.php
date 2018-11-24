@@ -11,13 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="examination")
  */
-class Examination
+class Examination implements \JsonSerializable
 {
     /**
      * @var int
-     * @ORM\Column(name="id")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -101,5 +101,13 @@ class Examination
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function jsonSerialize(): array
+    {
+        return get_object_vars($this);
     }
 }

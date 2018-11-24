@@ -4,18 +4,18 @@ declare(strict_types=1);
 namespace App\Controller;
 
 
-use App\Entity\Timetable;
+use App\Entity\Examination;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class TimetableController
+class ExaminationController
 {
     /**
      * @var EntityManagerInterface
      */
     private $em;
 
-    private $timetableRepository;
+    private $examinationRepository;
 
     /**
      * TimetableController constructor.
@@ -24,14 +24,13 @@ class TimetableController
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->timetableRepository = $this->em->getRepository(Timetable::class);
+        $this->examinationRepository = $this->em->getRepository(Examination::class);
     }
 
-
-    public function getProfileTimetable(int $profileId)
+    public function getList()
     {
-        $timetables = $this->timetableRepository->findBy(['profile' => $profileId]);
+        $examinations = $this->examinationRepository->findAll();
 
-        return new JsonResponse(['timetables' => $timetables ]);
+        return new JsonResponse($examinations);
     }
 }

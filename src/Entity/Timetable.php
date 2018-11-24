@@ -15,12 +15,18 @@ class Timetable implements \JsonSerializable
 {
     /**
      * @var int
-     * @ORM\Column(name="id")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
+    /**
+     * @var Profile
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profile")
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
+     */
+    private $profile;
     /**
      * @var string
      * @ORM\Column(name="duration", type="string", length=255)
@@ -29,13 +35,13 @@ class Timetable implements \JsonSerializable
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="start_date", type="datetime")
+     * @ORM\Column(name="start_date", type="string")
      */
     private $startDate;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="end_date", type="datetime")
+     * @ORM\Column(name="end_date", type="string")
      */
     private $endDate;
 
@@ -47,7 +53,7 @@ class Timetable implements \JsonSerializable
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="done_at", type="datetime", nullable=true)
+     * @ORM\Column(name="done_at", type="string", nullable=true)
      */
     private $doneAt;
 
@@ -58,7 +64,9 @@ class Timetable implements \JsonSerializable
     private $disabled;
 
     /**
-     * @var array
+     * @var Examination
+     * @ORM\ManyToOne(targetEntity="App\Entity\Examination")
+     * @ORM\JoinColumn(name="examination_id", referencedColumnName="id")
      */
     private $examination;
 
@@ -76,6 +84,22 @@ class Timetable implements \JsonSerializable
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return Profile
+     */
+    public function getProfile(): Profile
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param Profile $profile
+     */
+    public function setProfile(Profile $profile): void
+    {
+        $this->profile = $profile;
     }
 
     /**
@@ -97,7 +121,7 @@ class Timetable implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getStartDate(): \DateTime
+    public function getStartDate()
     {
         return $this->startDate;
     }
@@ -105,7 +129,7 @@ class Timetable implements \JsonSerializable
     /**
      * @param \DateTime $startDate
      */
-    public function setStartDate(\DateTime $startDate): void
+    public function setStartDate($startDate): void
     {
         $this->startDate = $startDate;
     }
@@ -113,7 +137,7 @@ class Timetable implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getEndDate(): \DateTime
+    public function getEndDate()
     {
         return $this->endDate;
     }
@@ -121,7 +145,7 @@ class Timetable implements \JsonSerializable
     /**
      * @param \DateTime $endDate
      */
-    public function setEndDate(\DateTime $endDate): void
+    public function setEndDate($endDate): void
     {
         $this->endDate = $endDate;
     }
@@ -143,17 +167,17 @@ class Timetable implements \JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getDoneAt(): \DateTime
+    public function getDoneAt()
     {
         return $this->doneAt;
     }
 
     /**
-     * @param \DateTime $doneAt
+     * @param null|\DateTime $doneAt
      */
-    public function setDoneAt(\DateTime $doneAt): void
+    public function setDoneAt($doneAt): void
     {
         $this->doneAt = $doneAt;
     }
@@ -175,22 +199,17 @@ class Timetable implements \JsonSerializable
     }
 
     /**
-     * @return array
+     * @return Examination
      */
-    public function getExamination(): array
+    public function getExamination(): Examination
     {
-        return [
-            'id' => 1,
-            'name' => 'Echo serca',
-            'defaultFrequency' => 'daily',
-            'description' => 'Lorem ipsum dolor sit amet',
-        ];
+        return $this->examination;
     }
 
     /**
-     * @param array $examination
+     * @param Examination $examination
      */
-    public function setExamination(array $examination): void
+    public function setExamination(Examination $examination): void
     {
         $this->examination = $examination;
     }
@@ -199,20 +218,4 @@ class Timetable implements \JsonSerializable
     {
         return get_object_vars($this);
     }
-
-    public static function fromArray(array $timetable): Timetable
-    {
-        $object = new Timetable();
-        $object->setId($timetable['id']);
-        $object->setDuration($timetable['duration']);
-        $object->setStartDate($timetable['startDate']);
-        $object->setEndDate($timetable['endDate']);
-        $object->setDone($timetable['done']);
-        $object->setDoneAt($timetable['doneAt']);
-        $object->setDisabled($timetable['disabled']);
-        $object->setExamination($timetable['examination']);
-
-        return $object;
-    }
-
 }

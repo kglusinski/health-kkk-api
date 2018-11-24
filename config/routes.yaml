@@ -4,11 +4,31 @@ api_login_check:
     methods: [POST]
 
 get_timetables:
-    path: /v1/timetables
-    controller: App\Controller\TimetableController::get
+    path: /v1/timetables/{profileId}
+    controller: App\Controller\TimetableController::getProfileTimetable
     methods: [GET]
 
-get_profiles:
+get_user_profiles:
     path: /v1/profiles
-    controller: App\Controller\ProfileController::get
+    controller: App\Controller\ProfileController::getUserProfiles
+    methods: [GET]
+
+get_single_profile:
+    path: /v1/profiles/{profileId}
+    controller: App\Controller\ProfileController::getProfile
+    methods: [GET]
+
+create_profile:
+    path: /v1/profiles
+    controller: App\Controller\ProfileController::createProfile
+    methods: [POST]
+
+edit_profile:
+    path: /v1/profiles/{profileId}
+    controller: App\Controller\ProfileController::pathProfile
+    methods: [PATCH]
+
+get_examinations_list:
+    path: /v1/examinations
+    controller: App\Controller\ExaminationController::getList
     methods: [GET]
