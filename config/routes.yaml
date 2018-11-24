@@ -8,3 +8,8 @@ get_timetables:
     path: /v1/timetables
     controller: App\Controller\TimetableController::get
     methods: [GET]
+
+get_profiles:
+    path: /v1/profiles/{userId}
+    controller: App\Controller\ProfileController::get
+    methods: [GET]
