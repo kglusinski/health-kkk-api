@@ -2,3 +2,9 @@ api_login_check:
     path: /v1/token
     controller: App\Controller\SecurityController::getToken
     methods: [POST]
+
+
+get_timetables:
+    path: /v1/timetables
+    controller: App\Controller\TimetableController::get
+    methods: [GET]
