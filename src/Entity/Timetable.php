@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="timetables")
  */
-class Timetable
+class Timetable implements \JsonSerializable
 {
     /**
      * @var int
@@ -194,4 +194,25 @@ class Timetable
     {
         $this->examination = $examination;
     }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+
+    public static function fromArray(array $timetable): Timetable
+    {
+        $object = new Timetable();
+        $object->setId($timetable['id']);
+        $object->setDuration($timetable['duration']);
+        $object->setStartDate($timetable['startDate']);
+        $object->setEndDate($timetable['endDate']);
+        $object->setDone($timetable['done']);
+        $object->setDoneAt($timetable['doneAt']);
+        $object->setDisabled($timetable['disabled']);
+        $object->setExamination($timetable['examination']);
+
+        return $object;
+    }
+
 }
