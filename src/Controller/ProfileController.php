@@ -32,7 +32,6 @@ class ProfileController
         $this->profileRepository = $this->em->getRepository(Profile::class);
     }
 
-
     public function getUserProfiles(): JsonResponse
     {
         $profiles = $this->profileRepository->findAll();
