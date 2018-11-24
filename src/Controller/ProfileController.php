@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProfileController
 {
-    public function get(int $userId): JsonResponse
+    public function get(): JsonResponse
     {
         $profile = new Profile();
         $profile->setId(1);

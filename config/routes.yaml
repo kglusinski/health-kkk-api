@@ -3,13 +3,12 @@ api_login_check:
     controller: App\Controller\SecurityController::getToken
     methods: [POST]
 
-
 get_timetables:
     path: /v1/timetables
     controller: App\Controller\TimetableController::get
     methods: [GET]
 
 get_profiles:
-    path: /v1/profiles/{userId}
+    path: /v1/profiles
     controller: App\Controller\ProfileController::get
     methods: [GET]
