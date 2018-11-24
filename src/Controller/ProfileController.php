@@ -7,10 +7,11 @@ namespace App\Controller;
 use App\Entity\Profile;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProfileController
+class ProfileController extends Controller
 {
     /**
      * @var EntityManager
@@ -34,7 +35,8 @@ class ProfileController
 
     public function getUserProfiles(): JsonResponse
     {
-        $profiles = $this->profileRepository->findAll();
+        $auth = $this->getUser();
+        $profiles = $this->profileRepository->findBy(['user' => $auth->getUser()->getId()]);
 
         return new JsonResponse(['profiles' => $profiles]);
     }

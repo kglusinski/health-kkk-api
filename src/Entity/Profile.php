@@ -46,6 +46,13 @@ class Profile implements \JsonSerializable
     private $city;
 
     /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -123,6 +130,22 @@ class Profile implements \JsonSerializable
     public function setCity(string $city): void
     {
         $this->city = $city;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 
     /**

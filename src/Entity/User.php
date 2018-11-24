@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +39,7 @@ class User implements \JsonSerializable
      * @ORM\Column(name="push_notifications", type="boolean")
      */
     private $pushNotifications;
+
 
     /**
      * @return int
