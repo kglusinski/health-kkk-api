@@ -18,6 +18,7 @@ class TimetableController
                 'startDate' => new \DateTime(),
                 'endDate' => new \DateTime('+2 years'),
                 'done' => false,
+                'doneAt' => null,
                 'disabled' => false,
                 'examination' => [
                     'id' => 1,
@@ -32,6 +33,7 @@ class TimetableController
                 'startDate' => new \DateTime(),
                 'endDate' => new \DateTime('+2 years'),
                 'done' => false,
+                'doneAt' => null,
                 'disabled' => false,
                 'examination' => [
                     'id' => 1,
@@ -46,6 +48,7 @@ class TimetableController
                 'startDate' => new \DateTime(),
                 'endDate' => new \DateTime('+2 years'),
                 'done' => true,
+                'doneAt' => new \DateTime(),
                 'disabled' => false,
                 'examination' => [
                     'id' => 1,
@@ -60,6 +63,7 @@ class TimetableController
                 'startDate' => new \DateTime(),
                 'endDate' => new \DateTime('+2 years'),
                 'done' => true,
+                'doneAt' => new \DateTime(),
                 'disabled' => true,
                 'examination' => [
                     'id' => 1,
