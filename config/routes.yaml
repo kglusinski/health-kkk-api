@@ -1,6 +1,5 @@
 api_login_check:
-    path: /v1/token
-    controller: App\Controller\SecurityController::getToken
+    path: /v1/login
     methods: [POST]
 
 get_timetables:
