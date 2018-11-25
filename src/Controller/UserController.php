@@ -61,10 +61,6 @@ class UserController extends Controller
         $user->setEmail($credentials['username']);
         $user->setPushNotifications(false);
 
-        var_dump($credentials);
-        var_dump($user);
-        die();
-
         $auth->setUser($user);
 
         $this->em->persist($auth);
