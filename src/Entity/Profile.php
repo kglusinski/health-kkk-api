@@ -29,7 +29,7 @@ class Profile implements \JsonSerializable
 
     /**
      * @var int
-     * @ORM\Column(name="age", type="integer", length=3)
+     * @ORM\Column(name="age", type="integer")
      */
     private $age;
 
@@ -247,7 +247,7 @@ class Profile implements \JsonSerializable
     /**
      * @return int|null
      */
-    public function getSportActivity(): ?int
+    public function getSportActivity()
     {
         return $this->sportActivity;
     }
@@ -270,6 +270,7 @@ class Profile implements \JsonSerializable
             case 2: return 'standing';
             case 3: return 'light physical';
             case 4: return 'heavy physical';
+            default: return 'sitting';
         }
     }
 

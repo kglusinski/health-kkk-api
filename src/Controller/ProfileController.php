@@ -71,7 +71,10 @@ class ProfileController extends Controller
 
         $scheduler->scheduleDefault($profile);
 
-        return new JsonResponse(['success' => true]);
+        return new JsonResponse([
+            'success' => true,
+            'profileId' => $profile->getId()
+        ]);
     }
 
     public function pathProfile(int $profileId, Request $request)

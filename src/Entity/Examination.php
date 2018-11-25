@@ -40,12 +40,6 @@ class Examination implements \JsonSerializable
     private $description;
 
     /**
-     * @var array
-     * @ORM\Column(name="frequency_changers", type="json", nullable=true)
-     */
-    private $frequencyChangers;
-
-    /**
      * @return int
      */
     public function getId(): int
