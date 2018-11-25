@@ -51,12 +51,14 @@ class ProfileController extends Controller
     public function createProfile(Request $request)
     {
         $profileRaw = json_decode($request->getContent(), true);
+        $auth = $this->getUser();
 
         $profile = new Profile();
         $profile->setSex($profileRaw['sex']);
         $profile->setCity($profileRaw['city']);
         $profile->setCountry($profileRaw['country']);
         $profile->setAge($profileRaw['age']);
+        $profile->setUser($auth->getUser()->getId());
 
         $this->em->persist($profile);
         $this->em->flush();
@@ -70,10 +72,9 @@ class ProfileController extends Controller
 
         $profileRaw = json_decode($request->getContent(), true);
 
-        $profile->setSex($profileRaw['sex']);
-        $profile->setCity($profileRaw['city']);
-        $profile->setCountry($profileRaw['country']);
-        $profile->setAge($profileRaw['age']);
+        foreach ($profileRaw as $key => $value) {
+            $profile->set($key, $value);
+        }
 
         $this->em->persist($profile);
         $this->em->flush();

@@ -53,6 +53,48 @@ class Profile implements \JsonSerializable
     private $user;
 
     /**
+     * @var null|bool
+     * @ORM\Column(name="allergy", type="boolean", nullable=true)
+     */
+    private $allergy;
+
+    /**
+     * @var null|string
+     * @ORM\Column(name="diet", type="string", nullable=true)
+     */
+    private $diet;
+
+    /**
+     * @var null|int
+     * @ORM\Column(name="sport_activity", type="integer", nullable=true)
+     */
+    private $sportActivity;
+
+    /**
+     * @var null|int
+     * @ORM\Column(name="job_type", type="integer", nullable=true)
+     */
+    private $jobType;
+
+    /**
+     * @var null|bool
+     * @ORM\Column(name="disability", type="boolean", nullable=true)
+     */
+    private $disability;
+
+    /**
+     * @var null|bool
+     * @ORM\Column(name="cancer_in_family", type="boolean", nullable=true)
+     */
+    private $cancerInFamily;
+
+    /**
+     * @var null|bool
+     * @ORM\Column(name="diabets", type="boolean", nullable=true)
+     */
+    private $diabets;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -146,6 +188,123 @@ class Profile implements \JsonSerializable
     public function setUser(User $user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAllergy(): ?bool
+    {
+        return $this->allergy;
+    }
+
+    /**
+     * @param bool|null $allergy
+     */
+    public function setAllergy(?bool $allergy): void
+    {
+        $this->allergy = $allergy;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDiet(): ?string
+    {
+        return $this->diet;
+    }
+
+    /**
+     * @param string|null $diet
+     */
+    public function setDiet(?string $diet): void
+    {
+        $this->diet = $diet;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSportActivity(): ?int
+    {
+        return $this->sportActivity;
+    }
+
+    /**
+     * @param int|null $sportActivity
+     */
+    public function setSportActivity(?int $sportActivity): void
+    {
+        $this->sportActivity = $sportActivity;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getJobType(): ?int
+    {
+        return $this->jobType;
+    }
+
+    /**
+     * @param int|null $jobType
+     */
+    public function setJobType(?int $jobType): void
+    {
+        $this->jobType = $jobType;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getDisability(): ?bool
+    {
+        return $this->disability;
+    }
+
+    /**
+     * @param bool|null $disability
+     */
+    public function setDisability(?bool $disability): void
+    {
+        $this->disability = $disability;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getCancerInFamily(): ?bool
+    {
+        return $this->cancerInFamily;
+    }
+
+    /**
+     * @param bool|null $cancerInFamily
+     */
+    public function setCancerInFamily(?bool $cancerInFamily): void
+    {
+        $this->cancerInFamily = $cancerInFamily;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getDiabets(): ?bool
+    {
+        return $this->diabets;
+    }
+
+    /**
+     * @param bool|null $diabets
+     */
+    public function setDiabets(?bool $diabets): void
+    {
+        $this->diabets = $diabets;
+    }
+
+    public function set(string $key, $value): void
+    {
+        $this->$key = $value;
     }
 
     /**

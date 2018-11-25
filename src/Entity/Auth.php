@@ -118,4 +118,14 @@ class Auth implements UserInterface, \Serializable
             $this->password,
             ) = unserialize($serialized);
     }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
 }
