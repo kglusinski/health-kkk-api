@@ -49,7 +49,7 @@ class Timetable implements \JsonSerializable
      * @var bool
      * @ORM\Column(name="done", type="boolean")
      */
-    private $done;
+    private $done = false;
 
     /**
      * @var \DateTime
@@ -61,7 +61,7 @@ class Timetable implements \JsonSerializable
      * @var bool
      * @ORM\Column(name="disabled", type="boolean")
      */
-    private $disabled;
+    private $disabled = false;
 
     /**
      * @var Examination

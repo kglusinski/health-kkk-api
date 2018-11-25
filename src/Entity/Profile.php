@@ -263,9 +263,14 @@ class Profile implements \JsonSerializable
     /**
      * @return int|null
      */
-    public function getJobType(): ?int
+    public function getJobType(): ?string
     {
-        return $this->jobType;
+        switch ($this->jobType) {
+            case 1: return 'sitting';
+            case 2: return 'standing';
+            case 3: return 'light physical';
+            case 4: return 'heavy physical';
+        }
     }
 
     /**

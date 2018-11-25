@@ -5,6 +5,8 @@ namespace App\Controller;
 
 
 use App\Entity\Profile;
+use App\Entity\User;
+use App\Service\ExaminationScheduler;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -48,21 +50,26 @@ class ProfileController extends Controller
         return new JsonResponse(['profile' =>  $profile ]);
     }
 
-    public function createProfile(Request $request)
+    public function createProfile(Request $request, ExaminationScheduler $scheduler)
     {
         $profileRaw = json_decode($request->getContent(), true);
         $auth = $this->getUser();
 
         $profile = new Profile();
-        $profile->setName($profileRaw['name']);
-        $profile->setSex($profileRaw['sex']);
-        $profile->setCity($profileRaw['city']);
-        $profile->setCountry($profileRaw['country']);
-        $profile->setAge($profileRaw['age']);
-        $profile->setUser($auth->getUser()->getId());
+        foreach ($profileRaw as $key => $value) {
+            if ($key === 'user') continue;
+            $profile->set($key, $value);
+        }
+
+        $usersRepository = $this->em->getRepository(User::class);
+        $user = $usersRepository->findOneBy(['id' => $auth->getUser()->getId()]);
+
+        $profile->setUser($user);
 
         $this->em->persist($profile);
         $this->em->flush();
+
+        $scheduler->scheduleDefault($profile);
 
         return new JsonResponse(['success' => true]);
     }

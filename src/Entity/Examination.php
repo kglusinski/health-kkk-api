@@ -40,6 +40,12 @@ class Examination implements \JsonSerializable
     private $description;
 
     /**
+     * @var array
+     * @ORM\Column(name="frequency_changers", type="json", nullable=true)
+     */
+    private $frequencyChangers;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -101,6 +107,22 @@ class Examination implements \JsonSerializable
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFrequencyChangers(): array
+    {
+        return json_decode($this->frequencyChangers, true);
+    }
+
+    /**
+     * @param array $frequencyChangers
+     */
+    public function setFrequencyChangers(array $frequencyChangers): void
+    {
+        $this->frequencyChangers = json_encode($frequencyChangers);
     }
 
     /**
