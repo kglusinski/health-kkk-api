@@ -11,7 +11,6 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends Controller
@@ -61,6 +60,10 @@ class UserController extends Controller
         $user = new User();
         $user->setEmail($credentials['username']);
         $user->setPushNotifications(false);
+
+        var_dump($credentials);
+        var_dump($user);
+        die();
 
         $auth->setUser($user);
 

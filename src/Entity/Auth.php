@@ -31,7 +31,7 @@ class Auth implements UserInterface, \Serializable
 
     /**
      * @var string
-     * @ORM\Column(name="username", type="string", length=50)
+     * @ORM\Column(name="username", type="string", length=50, unique=true)
      */
     private $username;
 

@@ -30,7 +30,7 @@ class User implements \JsonSerializable
 
     /**
      * @var string
-     * @ORM\Column(name="email", type="integer", length=65)
+     * @ORM\Column(name="email", type="string", length=65, unique=true)
      */
     private $email;
 
