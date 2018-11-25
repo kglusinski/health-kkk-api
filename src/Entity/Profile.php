@@ -22,6 +22,12 @@ class Profile implements \JsonSerializable
     private $id;
 
     /**
+     * @var string
+     * @ORM\Column(name="name", type="string", length=100)
+     */
+    private $name;
+
+    /**
      * @var int
      * @ORM\Column(name="age", type="integer", length=3)
      */
@@ -108,6 +114,22 @@ class Profile implements \JsonSerializable
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     /**

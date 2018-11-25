@@ -54,6 +54,7 @@ class ProfileController extends Controller
         $auth = $this->getUser();
 
         $profile = new Profile();
+        $profile->setName($profileRaw['name']);
         $profile->setSex($profileRaw['sex']);
         $profile->setCity($profileRaw['city']);
         $profile->setCountry($profileRaw['country']);
@@ -73,6 +74,7 @@ class ProfileController extends Controller
         $profileRaw = json_decode($request->getContent(), true);
 
         foreach ($profileRaw as $key => $value) {
+            if ($key === 'user') continue;
             $profile->set($key, $value);
         }
 

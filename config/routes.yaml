@@ -17,6 +17,16 @@ get_timetables:
     controller: App\Controller\TimetableController::getProfileTimetable
     methods: [GET]
 
+change_status_timetable:
+    path: /v1/timetables/status/{timetableId}
+    controller: App\Controller\TimetableController::statusTimetable
+    methods: [PATCH]
+
+change_done_timetable:
+    path: /v1/timetables/done-status/{timetableId}
+    controller: App\Controller\TimetableController::doneTimetable
+    methods: [PATCH]
+
 get_user_profiles:
     path: /v1/profiles
     controller: App\Controller\ProfileController::getUserProfiles

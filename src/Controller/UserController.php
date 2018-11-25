@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Auth;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,15 +29,16 @@ class UserController extends Controller
     private $passwordEncoder;
 
     /**
-     * TimetableController constructor.
-     * @param EntityManagerInterface $em
-     * @param UserPasswordEncoderInterface $encoder
+     * @var JWTTokenManagerInterface
      */
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    private $tokenManager;
+
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, JWTTokenManagerInterface $tokenManager)
     {
         $this->em = $em;
         $this->userRepository = $this->em->getRepository(User::class);
         $this->passwordEncoder = $encoder;
+        $this->tokenManager = $tokenManager;
     }
 
     public function getUserDetails()
@@ -67,6 +69,11 @@ class UserController extends Controller
 
         $this->em->flush();
 
-        return new JsonResponse(['success' => true]);
+        $token = $this->tokenManager->create($auth);
+
+        return new JsonResponse([
+            'success' => true,
+            'token' => $token
+        ]);
     }
 }
