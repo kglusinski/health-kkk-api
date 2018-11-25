@@ -40,7 +40,7 @@ class TimetableController
         $timetable->setDone(!$timetable->isDone());
 
         if ($timetable->isDone()) {
-            $timetable->setDoneAt(new \DateTime('now'));
+            $timetable->setDoneAt((new \DateTime('now'))->format('Y-m-d'));
         }
 
         $this->em->persist($timetable);
